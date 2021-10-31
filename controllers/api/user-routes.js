@@ -11,6 +11,8 @@ router.post('/signup', async (req, res) => {
             req.session.loggedIn = true;
             res.status(200).json(newUser);
         });
+        // console.log(newUser);
+        // res.status(200).json(newUser);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -68,3 +70,5 @@ router.post('/logout', (req, res) => {
         res.status(404).end();
     }
 })
+
+module.exports = router;
