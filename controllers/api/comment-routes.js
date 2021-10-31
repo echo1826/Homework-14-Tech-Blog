@@ -1,1 +1,1 @@
-// creating a comment will require front end to grab the user id and post id to put into database
+// creating a comment will require session to save the user id 

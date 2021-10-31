@@ -1,1 +1,1 @@
-// creating a post will require an id parameter gotten from front end
+// creating a post will require an id parameter gotten from session variable

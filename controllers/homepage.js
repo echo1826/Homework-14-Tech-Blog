@@ -1,44 +1,57 @@
 const router = require('express').Router();
-const {User, Post, Comment} = require('../models');
+const {
+    User,
+    Post,
+    Comment
+} = require('../models');
+const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     const postData = await Post.findAll({
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
+        include: [{
+            model: User,
+            attributes: ['username']
+        }]
     });
     // console.log(postData.user);
     const posts = postData.map((post) => {
-        return post.get({plain:true});
+        return post.get({
+            plain: true
+        });
     });
     console.log(posts);
-    res.render('homepage', {posts});
+    res.render('homepage', {
+        posts,
+        loggedIn: req.session.loggedIn,
+        userId: req.session.userId
+    });
 });
 
-router.get('/dashboard/:id', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     const postData = await Post.findAll({
-        include: [
-            {
-                model: User,
-                required: true,
-                where: {
-                    id: req.session.userId
-                }
+        include: [{
+            model: User,
+            required: true,
+            where: {
+                id: req.session.userId
             }
-        ]
+        }]
     });
     const posts = postData.map((post) => {
-        return post.get({plain:true});
+        return post.get({
+            plain: true
+        });
     });
-    res.render('dashboard', {posts});
+    res.render('dashboard', {
+        ...posts,
+        loggedIn: req.session.loggedIn,
+        userId: req.session.userId
+    });
 });
 
-router.get('/login' , (req, res) => {
-    if(req.session.loggedIn) {
-
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
     }
     res.render('login');
 });
