@@ -11,7 +11,15 @@
 
 <body>
     <header>
-        
+        <nav>
+          <a href="/">Home</a>
+          <a href="/dashboard">Dashboard</a>
+          {{#if loggedIn}}
+          <button class="no-button" id = 'logout'>logout</button>
+          {{else}}
+          <a href="/login">login</a>
+          {{/if}}
+        </nav>
     </header>
     {{{body}}}
 </body>
