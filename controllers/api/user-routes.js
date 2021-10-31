@@ -3,7 +3,7 @@ const {
     User
 } = require('../../models');
 
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
         const newUser = User.create(req.body);
         req.session.save(() => {
