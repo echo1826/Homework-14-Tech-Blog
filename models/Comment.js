@@ -24,7 +24,9 @@ Comment.init({
             key: 'id'
         }
     }
-}, {
+
+}, 
+{
     sequelize,
     timestamps: true,
     updatedAt: false,

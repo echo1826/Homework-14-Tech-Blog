@@ -1,0 +1,1 @@
+// creating a comment will require front end to grab the user id and post id to put into database
