@@ -10,8 +10,7 @@ const postData =
 
 const userData = 
     {
-        name: 'tester',
-        email: 'ethan@me.com',
+        username: 'tester',
         password: 'testpass'
     }
 const commentData = {

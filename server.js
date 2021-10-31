@@ -19,7 +19,9 @@ const hbs = exphbs.create({});
 // Configure and link a session object with the sequelize store
 const sess = {
   secret: process.env.SECRET,
-  cookie: {},
+  cookie: {
+    maxAge: 3600000
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -39,6 +41,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
