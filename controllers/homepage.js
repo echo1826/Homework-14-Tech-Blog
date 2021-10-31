@@ -27,13 +27,13 @@ router.get('/', async (req, res) => {
     });
 });
 
-router.get('/dashboard', withAuth, async (req, res) => {
+router.get('/dashboard/:id', async (req, res) => {
     const postData = await Post.findAll({
         include: [{
             model: User,
             required: true,
             where: {
-                id: req.session.userId
+                id: req.params.id
             }
         }]
     });
@@ -43,11 +43,44 @@ router.get('/dashboard', withAuth, async (req, res) => {
         });
     });
     res.render('dashboard', {
-        ...posts,
-        loggedIn: req.session.loggedIn,
-        userId: req.session.userId
+        posts,
+        // loggedIn: req.session.loggedIn,
+        // userId: req.session.userId
     });
 });
+
+router.get('/post/:id', async (req, res) => {
+    const postData = await Post.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+                model: Comment
+            },
+            {
+                model: User, 
+                attributes: {exclude: 'password'},
+                // as: 'postUser'
+                
+            }
+        ]
+    });
+    const post = await postData.get({plain:true});
+    // for(let i=0; i<post.comments.length; i++) {
+
+    // }
+    // console.log(post.comments[0].user_id);
+    const userComment = await User.findOne({
+        where:{
+            id: post.comments[0].user_id
+        }
+    });
+    const commentUser = userComment.get({plain:true});
+    // console.log(post);
+    // res.json(post);
+    res.render('post', {post: post, commentUser: commentUser});
+})
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
