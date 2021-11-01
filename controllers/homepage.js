@@ -27,7 +27,7 @@ router.get('/home', async (req, res) => {
     });
 });
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     const postData = await Post.findAll({
         include: [{
             model: User,
@@ -44,12 +44,12 @@ router.get('/dashboard', async (req, res) => {
     });
     res.render('dashboard', {
         posts,
-        // loggedIn: req.session.loggedIn,
-        // userId: req.session.userId
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id
     });
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
     const postData = await Post.findOne({
         where: {
             id: req.params.id
@@ -62,7 +62,6 @@ router.get('/post/:id', async (req, res) => {
                 model: User, 
                 attributes: {exclude: 'password'},
                 // as: 'postUser'
-                
             }
         ]
     });
