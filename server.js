@@ -19,9 +19,7 @@ const hbs = exphbs.create({});
 // Configure and link a session object with the sequelize store
 const sess = {
   secret: process.env.SECRET,
-  cookie: {
-    maxAge: 3600000
-  },
+  cookie: {},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -31,6 +29,7 @@ const sess = {
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
+sess.store.sync();
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
