@@ -5,10 +5,12 @@ const {Post} = require('../../models');
 
 router.post('/', (req, res) => {
     try{
-        const newPost = Post.create(req.body, {
+        const newPost = Post.create({
+            title: req.body.postTitle,
+            content: req.body.postText,
             user_id: req.session.user_id
         });
-        res.redirect('/dashboard')
+        res.status(200).json(newPost);
         // res.status(200).json(newPost);
     }
     catch(error) {
@@ -17,10 +19,16 @@ router.post('/', (req, res) => {
 
 });
 
-// router.delete('/', (req, res) => {
-//     try{
-//         const deletedPost = Post.destroy()
-//     }
-// });
+router.delete('/:id', (req, res) => {
+    try{
+        const deletedPost = Post.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+    }catch(error) {
+        res.status(500).json(error);
+    }
+});
 
 module.exports=router;
