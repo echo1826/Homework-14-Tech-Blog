@@ -6,7 +6,7 @@ const {
 } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/home', async (req, res) => {
     const postData = await Post.findAll({
         include: [{
             model: User,
@@ -19,21 +19,21 @@ router.get('/', async (req, res) => {
             plain: true
         });
     });
-    console.log(posts);
+    console.log(req.session.loggedIn);
     res.render('homepage', {
         posts,
-        loggedIn: req.session.loggedIn,
+        logged_in: req.session.logged_in,
         userId: req.session.userId
     });
 });
 
-router.get('/dashboard/:id', async (req, res) => {
+router.get('/dashboard', async (req, res) => {
     const postData = await Post.findAll({
         include: [{
             model: User,
             required: true,
             where: {
-                id: req.params.id
+                id: req.session.user_id
             }
         }]
     });
@@ -83,9 +83,10 @@ router.get('/post/:id', async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-    }
+    console.log(req.session.logged_in);
+    // if (req.session.loggedIn) {
+    //     res.redirect('/home');
+    // }
     res.render('login');
 });
 
