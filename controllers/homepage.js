@@ -54,38 +54,53 @@ router.get('/post/:id', withAuth, async (req, res) => {
         where: {
             id: req.params.id
         },
-        include: [
-            {
+        include: [{
                 model: Comment
             },
             {
-                model: User, 
-                attributes: {exclude: 'password'},
+                model: User,
+                attributes: {
+                    exclude: 'password'
+                },
                 // as: 'postUser'
             }
         ]
     });
-    const post = await postData.get({plain:true});
+    const post = await postData.get({
+        plain: true
+    });
     // for(let i=0; i<post.comments.length; i++) {
 
     // }
     // console.log(post.comments[0].user_id);
     const userComment = await User.findOne({
-        where:{
+        where: {
             id: post.comments[0].user_id
         }
     });
-    const commentUser = userComment.get({plain:true});
+    const commentUser = userComment.get({
+        plain: true
+    });
     // console.log(post);
     // res.json(post);
-    res.render('post', {post: post, commentUser: commentUser});
+    res.render('post', {
+        post: post,
+        commentUser: commentUser
+    });
+});
+
+router.get('/postform', (req, res) => {
+    res.render('postform', {
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id
+    });
 })
 
 router.get('/login', (req, res) => {
     console.log(req.session.logged_in);
-    // if (req.session.loggedIn) {
-    //     res.redirect('/home');
-    // }
+    if (req.session.logged_in) {
+        res.redirect('/home');
+    }
     res.render('login');
 });
 
