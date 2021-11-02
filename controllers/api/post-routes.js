@@ -3,9 +3,9 @@ const {Post} = require('../../models');
 // creating a post will require an id parameter gotten from session variable
 // post and delete routes
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try{
-        const newPost = Post.create({
+        const newPost = await Post.create({
             title: req.body.postTitle,
             content: req.body.postText,
             user_id: req.session.user_id
@@ -18,9 +18,9 @@ router.post('/', (req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
-        const deletedPost = Post.destroy({
+        const deletedPost = await Post.destroy({
             where: {
                 id: req.params.id
             }
@@ -31,9 +31,11 @@ router.delete('/:id', (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     try{
-        const updatedPost = Post.update({
+        console.log('post put route');
+        console.log(req.body);
+        const updatedPost = await Post.update({title: req.body.title, content: req.body.content}, {
             where: {
                 id: req.params.id
             }

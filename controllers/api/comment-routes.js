@@ -3,7 +3,7 @@
 const router = require('express').Router();
 const {Comment} = require('../../models');
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try{
         const newComment = await Comment.create({
             content: req.body.content,
@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
     }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
         const deletedComment = await Comment.destroy({
             where: {
@@ -29,7 +29,7 @@ router.delete('/:id', (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     try{
         const updatedComment = await Comment.update(req.body, {
             where: {

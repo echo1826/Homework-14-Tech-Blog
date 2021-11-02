@@ -3,13 +3,17 @@
         <a href="/post/{{id}}">
             <div class="card-header">
                 <h3>{{title}}</h3>
-                <p>Posted by {{user.username}} on {{createdAt}}</p>
+                <p>{{content}}</p>
             </div>
             <div class="card-body">
-                {{content}}
+                <p>Posted by {{user.username}} on {{createdAt}}</p>
             </div>
         </a>
-        <button id="updatePost">update post</button>
-        <button id="deletePost">delete post</button>
+        <label for="post-title">Post Title:</label>
+        <input type="text" id="postTitle">
+        <label for="post-content">Post Content:</label>
+        <textarea id="postContent"></textarea>
+        <button class="updatePost">update post</button>
+        <button class="deletePost">delete post</button>
     </div>
 </section>
