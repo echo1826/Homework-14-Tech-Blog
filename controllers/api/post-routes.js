@@ -11,7 +11,6 @@ router.post('/', (req, res) => {
             user_id: req.session.user_id
         });
         res.status(200).json(newPost);
-        // res.status(200).json(newPost);
     }
     catch(error) {
         res.status(500).json(error);
@@ -26,9 +25,23 @@ router.delete('/:id', (req, res) => {
                 id: req.params.id
             }
         })
+        res.status(200).json(deletedPost);
     }catch(error) {
         res.status(500).json(error);
     }
 });
+
+router.put('/:id', (req, res) => {
+    try{
+        const updatedPost = Post.update({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.status(200).json(updatedPost);
+    }catch(error) {
+        res.status(500).json(error);
+    }
+})
 
 module.exports=router;

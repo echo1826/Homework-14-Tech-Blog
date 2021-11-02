@@ -14,7 +14,7 @@ async function loginHandler(event) {
         console.log(response.ok);
         if(response.ok) {
             console.log('response ok');
-            document.location.replace('/home');
+            document.location.replace('/');
         }else{
             alert(response.statusText);
         }

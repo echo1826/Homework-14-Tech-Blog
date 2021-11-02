@@ -6,7 +6,7 @@ const {
 } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/home', async (req, res) => {
+router.get('/', async (req, res) => {
     const postData = await Post.findAll({
         include: [{
             model: User,
