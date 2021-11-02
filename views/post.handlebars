@@ -18,9 +18,8 @@
 {{/each}}
 {{/if}}
 <section>
-    
-    <textarea id="newComment"></textarea>
-    <button>New comment</button>
+    <textarea id="newComment" data-id="{{post.id}}"></textarea>
+    <button id="commentBtn">New comment</button>
 </section>
 
 <script src="/js/comment.js"></script>
