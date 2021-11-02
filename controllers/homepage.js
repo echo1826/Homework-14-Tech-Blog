@@ -73,19 +73,21 @@ router.get('/post/:id', withAuth, async (req, res) => {
 
     // }
     // console.log(post.comments[0].user_id);
-    const userComment = await User.findOne({
-        where: {
-            id: post.comments[0].user_id
-        }
-    });
+    // const userComment = await User.findOne({
+    //     where: {
+    //         id: post.comments[0].user_id
+    //     }
+    // });
     const commentUser = userComment.get({
         plain: true
     });
+    const deleteBtnValue = post.comments[0].user_id == req.session.user_id;
     // console.log(post);
     // res.json(post);
     res.render('post', {
         post: post,
-        commentUser: commentUser
+        commentUser: commentUser,
+        deleteBtn: deleteBtnValue
     });
 });
 
