@@ -30,6 +30,13 @@ User.init({
             len: [8]
         }
     },
+    // comment_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: 'comment',
+    //         key: 'id'
+    //     }
+    // }
 }, {
     hooks: {
         beforeCreate: async (newUserData) => {

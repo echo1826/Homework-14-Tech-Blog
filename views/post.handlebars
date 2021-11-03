@@ -10,13 +10,14 @@
     </div>
 </section>
 
-{{#if post.comments.length}}
-{{#each post.comments as |comment|}}
+
+
+{{#each comments as |comment|}}
 <section>
     {{>comment}}
 </section>
 {{/each}}
-{{/if}}
+
 <section>
     <textarea id="newComment" data-id="{{post.id}}"></textarea>
     <button id="commentBtn">New comment</button>

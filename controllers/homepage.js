@@ -69,24 +69,41 @@ router.get('/post/:id', withAuth, async (req, res) => {
     const post = await postData.get({
         plain: true
     });
+    console.log('post', post)
     // for(let i=0; i<post.comments.length; i++) {
 
     // }
     // console.log(post.comments[0].user_id);
+    
     // const userComment = await User.findOne({
     //     where: {
     //         id: post.comments[0].user_id
     //     }
     // });
-    const commentUser = userComment.get({
-        plain: true
+    const commentData = await Comment.findAll({
+        where: {
+            post_id: post.id
+        },
+        include: [{
+            model: User,
+            attributes: {
+                exclude: 'password'
+            }
+        }]
     });
+    const comments = commentData.map((comment) => comment.get({ plain: true}));
+    // console.log("userComment pre-serialization", userComment);
+    // const commentUser = userComment.get({
+    //     plain: true
+    // });
+    // console.log("userComment post-serialization", commentUser);
+    console.log('comments query--------------------', comments);
     const deleteBtnValue = post.comments[0].user_id == req.session.user_id;
     // console.log(post);
     // res.json(post);
     res.render('post', {
-        post: post,
-        commentUser: commentUser,
+        post,
+        comments,
         deleteBtn: deleteBtnValue
     });
 });

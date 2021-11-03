@@ -35,9 +35,9 @@ async function updatePost(event) {
     }
 }
 
-let deletebtns = document.querySelectorAll('.deletePost');
+const deletebtns = document.querySelectorAll('.deletePost');
 
-let updatebtns = document.querySelectorAll('.updatePost');
+const updatebtns = document.querySelectorAll('.updatePost');
 
 for(let i = 0; i < deletebtns.length; i++) {
     deletebtns[i].addEventListener('click', deletePost);
