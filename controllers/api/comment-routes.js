@@ -18,11 +18,15 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try{
+        console.log("Route firing!");
         const deletedComment = await Comment.destroy({
             where: {
                 id: req.params.id
             }
         });
+        if(!deletedComment) {
+            res.status(404).json("No comment to delete");
+        }
         res.status(200).json(deletedComment);
     }catch(error) {
         res.status(500).json(error);

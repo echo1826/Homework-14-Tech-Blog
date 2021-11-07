@@ -1,7 +1,7 @@
-<section data-id="{{id}}">
+<section>
     <p>{{content}}</p>
     <p>- {{user.username}} on {{createdAt}}</p>
-    {{#if deleteBtn}}
-    <button>delete comment</button>
+    {{#if delete}}
+    <button class="comments" data-id="{{id}}">delete comment</button>
     {{/if}}
 </section>

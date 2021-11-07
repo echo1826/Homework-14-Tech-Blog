@@ -54,32 +54,20 @@ router.get('/post/:id', withAuth, async (req, res) => {
         where: {
             id: req.params.id
         },
-        include: [{
-                model: Comment
-            },
+        include: [
             {
                 model: User,
                 attributes: {
                     exclude: 'password'
                 },
-                // as: 'postUser'
+
             }
         ]
     });
     const post = await postData.get({
         plain: true
     });
-    console.log('post', post)
-    // for(let i=0; i<post.comments.length; i++) {
 
-    // }
-    // console.log(post.comments[0].user_id);
-    
-    // const userComment = await User.findOne({
-    //     where: {
-    //         id: post.comments[0].user_id
-    //     }
-    // });
     const commentData = await Comment.findAll({
         where: {
             post_id: post.id
@@ -92,19 +80,22 @@ router.get('/post/:id', withAuth, async (req, res) => {
         }]
     });
     const comments = commentData.map((comment) => comment.get({ plain: true}));
-    // console.log("userComment pre-serialization", userComment);
-    // const commentUser = userComment.get({
-    //     plain: true
-    // });
-    // console.log("userComment post-serialization", commentUser);
-    console.log('comments query--------------------', comments);
-    const deleteBtnValue = post.comments[0].user_id == req.session.user_id;
-    // console.log(post);
-    // res.json(post);
+    console.log("COMMENTS======================================",comments);
+    for(let i = 0; i<comments.length; i++) {
+        console.log(comments[i].user);
+        if(comments[i].user.id == req.session.user_id) {
+            comments[i].delete = true;
+        }else {
+            comments[i].delete = false;
+        }
+    }
+    
+    // console.log(comments);
+
     res.render('post', {
         post,
         comments,
-        deleteBtn: deleteBtnValue
+        logged_in: req.session.logged_in
     });
 });
 

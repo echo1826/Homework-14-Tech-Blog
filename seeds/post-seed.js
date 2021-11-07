@@ -38,7 +38,9 @@ const commentData = {
 }
 
 const seedPost = async () => {
-    await User.bulkCreate(userData);
+    await User.bulkCreate(userData, {
+        individualHooks: true
+    });
     await Post.bulkCreate(postData);
     await Comment.create(commentData);
 }
