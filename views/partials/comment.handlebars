@@ -1,6 +1,6 @@
 <section class="card no-padding col-4">
     <p>{{content}}</p>
-    <p>- {{user.username}} on {{createdAt}}</p>
+    <p>- {{user.username}} on {{format_time createdAt}}</p>
     {{#if delete}}
     <button class="comments" data-id="{{id}}">delete comment</button>
     {{/if}}

@@ -1,9 +1,9 @@
 <section class="justify-content-center">
-    <a class="card col-4 no-padding" href="/post/{{id}}">
+    <a class="card col-6 no-padding" href="/post/{{id}}">
         <div data-id={{id}}>
             <div class="card-header">
                 <h3>{{title}}</h3>
-                <p>Posted by {{user.username}} on {{createdAt}}</p>
+                <p>Posted by {{user.username}} on {{format_time createdAt}}</p>
             </div>
             <div class="card-body">
                 {{content}}
