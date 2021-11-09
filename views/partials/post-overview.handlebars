@@ -1,12 +1,12 @@
 <section>
     <div class="card col-6 no-padding" data-id={{id}}>
-        <a href="/post/{{id}}">
+        <a href="/post/{{id}}" class="text-decoration-none">
             <div class="card-header">
                 <h3>{{title}}</h3>
-                <p>{{content}}</p>
-            </div>
-            <div class="card-body">
                 <p>Posted by {{user.username}} on {{format_time createdAt}}</p>
+            </div>
+            <div class="card-body text-color">
+                <p>{{content}}</p>
             </div>
         </a>
         <label for="post-title">Post Title:</label>

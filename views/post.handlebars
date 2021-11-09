@@ -4,7 +4,7 @@
             <h3>{{post.title}}</h3>
             <p>Posted by {{post.user.username}} on {{format_time post.createdAt}}</p>
         </div>
-        <div class="card-body">
+        <div class="card-body fs-4">
             {{post.content}}
         </div>
     </div>
@@ -18,7 +18,7 @@
 </section>
 {{/each}}
 
-<section>
+<section class="d-inline">
     <textarea id="newComment" data-id="{{post.id}}"></textarea>
     <button id="commentBtn">New comment</button>
 </section>
