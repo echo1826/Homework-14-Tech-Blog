@@ -99,7 +99,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
     });
 });
 
-router.get('/postform', (req, res) => {
+router.get('/postform', withAuth, (req, res) => {
     res.render('postform', {
         logged_in: req.session.logged_in,
         user_id: req.session.user_id

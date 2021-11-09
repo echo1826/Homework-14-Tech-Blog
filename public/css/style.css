@@ -46,3 +46,13 @@ input {
 textarea {
     width: 30em;
 }
+
+button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.no-button {
+    background: transparent;
+    border: none !important;
+}

@@ -1,5 +1,5 @@
 <section>
-    <div class="card">
+    <div class="card col-6 no-padding">
         <div class="card-header">
             <h3>{{post.title}}</h3>
             <p>Posted by {{post.user.username}} on {{format_time post.createdAt}}</p>
@@ -18,7 +18,7 @@
 </section>
 {{/each}}
 
-<section class="d-inline">
+<section class= "card col-4">
     <textarea id="newComment" data-id="{{post.id}}"></textarea>
     <button id="commentBtn">New comment</button>
 </section>
