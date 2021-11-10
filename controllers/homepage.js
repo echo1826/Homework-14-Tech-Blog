@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
             plain: true
         });
     });
-    console.log(req.session.loggedIn);
     res.render('homepage', {
         posts,
         logged_in: req.session.logged_in,
