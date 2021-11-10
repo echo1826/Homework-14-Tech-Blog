@@ -21,10 +21,6 @@ a {
     margin-right: auto;
 }
 
-.text-color {
-    color: black;
-}
-
 input {
     width: 30em;
 }
@@ -55,4 +51,10 @@ button {
 .no-button {
     background: transparent;
     border: none !important;
+}
+
+.card-body {
+    background-color: cadetblue;
+    color: white;
+    font-size: medium;
 }
