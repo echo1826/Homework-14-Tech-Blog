@@ -18,6 +18,7 @@ async function updatePost(event) {
     event.preventDefault();
     console.log("update post");
     const postId = event.target.parentElement.getAttribute('data-id');
+    console.log(postId);
     const postTitle = document.querySelector('#postTitle').value.trim();
     const postContent = document.querySelector('#postContent').value.trim();
     console.log(postTitle, postContent);
