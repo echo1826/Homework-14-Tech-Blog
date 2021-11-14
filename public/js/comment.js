@@ -42,11 +42,37 @@ async function deleteComment(event) {
     }
 }
 
+async function updateComment(event) {
+    event.preventDefault();
+    const commentId = event.target.getAttribute("data-id");
+    const commentText = event.target.previousElementSibling.value;
+    console.log(commentText);
+    if(commentId && commentText) {
+        const response = await fetch(`/api/comment/${commentId}`, {
+            method: 'PUT',
+            body: JSON.stringify({content: commentText}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if(response.ok) {
+            document.location.reload();
+        }else {
+            alert(response.statusText);
+        }
+    }
+}
+
 document.querySelector('#commentBtn').addEventListener('click', addComment);
 
-const comments = document.querySelectorAll('.comments');
-console.log(comments);
+const deleteComments = document.querySelectorAll('.comments');
+const updateComments = document.querySelectorAll(".updateComments");
+// console.log(comments);
 
-for (let i = 0; i < comments.length; i++) {
-    comments[i].addEventListener('click', deleteComment);
+for (let i = 0; i < deleteComments.length; i++) {
+    deleteComments[i].addEventListener('click', deleteComment);
+}
+
+for(let i = 0; i < updateComments.length; i++) {
+    updateComments[i].addEventListener('click', updateComment);
 }

@@ -2,6 +2,8 @@
     <p>{{content}}</p>
     <p>- {{user.username}} on {{format_time createdAt}}</p>
     {{#if delete}}
+    <textarea class="updateText"></textarea>
+    <button class="updateComments" data-id="{{id}}">update comment</button>
     <button class="comments" data-id="{{id}}">delete comment</button>
     {{/if}}
 </section>

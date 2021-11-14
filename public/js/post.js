@@ -1,4 +1,5 @@
-async function addPost() {
+async function addPost(event) {
+    event.preventDefault();
     const postTitle = document.querySelector('#post-title').value.trim();
     const postText = document.querySelector('#post-content').value.trim();
     
