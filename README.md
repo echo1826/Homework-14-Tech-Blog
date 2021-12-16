@@ -52,7 +52,22 @@ This repo is covered under the MIT License.
 <br>[License](https://choosealicense.com/licenses/mit/)
 
 # Deployment
-Deployed at: <https://tech-blog-ec.herokuapp.com/> 
+Deployed at: <https://tech-blog-ec.herokuapp.com/> <br>
+
+Home Page:
+![Homepage](./assets/images/screenshot.PNG)
+
+Login Form:
+![Login Form](./assets/images/login-from.PNG)
+
+Post Details Page:
+![Post Details Page](./assets/images/post-details.PNG)
+
+Post Form Page:
+![Post Form Page](./assets/images/post-form.PNG)
+
+Dashboard Page:
+![Dashboard](./assets/images/dashboard.PNG)
 
 # Tests
 
