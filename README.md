@@ -1,4 +1,4 @@
-# Homework-14-Tech-Blog
+# Tech-Blog
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 # Table of Contents
